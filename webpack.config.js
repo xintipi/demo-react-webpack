@@ -13,7 +13,7 @@ const VENDOR_LIBS = [
     'redux-thunk'
 ];
 const devServer = {
-    port : 4000,
+    port : 3000,
     open : true,
     disableHostCheck : true,
     historyApiFallback : true,
