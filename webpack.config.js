@@ -5,6 +5,7 @@ const VENDOR_LIBS = [
     'axios',
     'bootstrap',
     'jquery',
+    'lodash',
     'react',
     'react-dom',
     'react-redux',
