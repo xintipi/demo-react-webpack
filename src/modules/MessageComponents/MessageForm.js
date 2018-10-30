@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class MessageForm extends Component {
     render() {
         const {message} = this.props;
+        let stringNumber = message ? message.length : '000';
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">
@@ -27,7 +28,7 @@ class MessageForm extends Component {
                         <div className="text-number">
                             <span className="txt">文字数</span>
                             <span className="dot">:</span>
-                            <span className="number">000</span>
+                            <span className="number">{stringNumber}</span>
                         </div>
                         <div className="text-replace row">
                             <label className="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-form-label col-form-label-lg replace">置換ワード入力</label>
