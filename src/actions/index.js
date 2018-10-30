@@ -15,3 +15,10 @@ export const actFetchStudents = (students) => {
         students
     }
 };
+
+export const actApplyQuote = (student) => {
+    return {
+        type: Types.APPLY_QUOTE,
+        student
+    }
+};

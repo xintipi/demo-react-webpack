@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class MessageForm extends Component {
     render() {
         const {message} = this.props;
-
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">

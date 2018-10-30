@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import * as action from './../../actions/index';
 
 class Quote extends Component {
     constructor(props) {
@@ -38,7 +39,9 @@ class Quote extends Component {
     };
 
     onApplyQuote = (students) => {
-        this.props.onReceiveStudent(this.state, students);
+        let splitName = this.state.slName ? this.state.slName.split(' ')[1].replace(/[\[\]']+/g, '') : '';
+        let index = _.findIndex(students, (student) => { return student.management_name === splitName; });
+        this.props.applyQuote(students[index])
     };
 
     render() {
@@ -78,4 +81,12 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(Quote);
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        applyQuote: (student) => {
+            dispatch(action.actApplyQuote(student))
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quote);

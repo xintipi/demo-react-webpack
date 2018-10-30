@@ -1,1 +1,2 @@
 export const FETCH_STUDENTS = 'FETCH_STUDENTS';
+export const APPLY_QUOTE = 'APPLY_QUOTE';
