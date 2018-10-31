@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import * as action from './../../actions/index';
 
 class MessageForm extends Component {
     constructor(props) {
@@ -20,7 +18,8 @@ class MessageForm extends Component {
             $('.text-number .number').text(nextProps.message.length);
             this.setState({
                 message: nextProps.message,
-                total_message_sent: nextProps.totalMessage
+                total_message_sent: nextProps.totalMessage,
+                total_student_sent: nextProps.totalStudentSent
             })
         } else {
             $('.none-background-inner').val('');
@@ -85,6 +84,7 @@ class MessageForm extends Component {
 
     render() {
         localStorage.setItem('task', JSON.stringify(this.state));
+        // console.log(this.state);
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">

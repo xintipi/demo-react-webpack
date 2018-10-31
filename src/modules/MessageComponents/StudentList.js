@@ -6,6 +6,9 @@ import _ from 'lodash';
 import {Link} from 'react-router-dom';
 
 class StudentList extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     componentDidMount() {
         this.props.getAllStudents();
@@ -21,6 +24,7 @@ class StudentList extends Component {
                         key={index}
                         student={student}
                         index={index}
+                        onGetId={this.onGetId}
                     />
                 );
             });
@@ -30,6 +34,10 @@ class StudentList extends Component {
 
     onSave = () => {
         this.props.onSavePreview(JSON.parse(localStorage.getItem('task')));
+    };
+
+    onGetId = (id) => {
+        this.props.onReceiveIdWhenChecked(id);
     };
 
     render() {

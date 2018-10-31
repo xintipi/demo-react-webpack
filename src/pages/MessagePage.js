@@ -11,6 +11,7 @@ class MessagePage extends Component {
             id: '',
             management_name: '',
             total_message_sent: '',
+            total_student_sent: '',
             sent_date: '',
             message: '',
         }
@@ -28,8 +29,14 @@ class MessagePage extends Component {
         }
     }
 
+    onReceiveIdWhenChecked = (id) => {
+        this.setState({
+            total_student_sent: id
+        })
+    };
+
     render () {
-        let {message, total_message_sent} = this.state;
+        let {message, total_message_sent, total_student_sent} = this.state;
         return (
             <Fragment>
                 <h2>LINEメッセージ送信：入力画面</h2>
@@ -40,8 +47,8 @@ class MessagePage extends Component {
                     {/* Form to send data from message.html page to confirmation.html page */}
                     <div id="frm_details">
                         <input type="hidden" name="user_ids" defaultValue="@%%user_ids@" />
-                        <MessageForm message={message} totalMessage={total_message_sent}/>
-                        <StudentList/>
+                        <MessageForm message={message} totalMessage={total_message_sent} totalStudentSent={total_student_sent}/>
+                        <StudentList onReceiveIdWhenChecked={this.onReceiveIdWhenChecked}/>
                     </div>
                 </div>
             </Fragment>
