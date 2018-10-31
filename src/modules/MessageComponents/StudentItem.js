@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 
-let tmp = [];
+window.tmp = [];
 
 class StudentItem extends Component {
     constructor(props) {

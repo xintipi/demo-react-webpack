@@ -6,8 +6,7 @@ class MessageForm extends Component {
         this.state = {
             management_name: '',
             message: '',
-            total_message_sent: '',
-            total_student_sent: ''
+            total_message_sent: ''
         };
     }
 
@@ -18,13 +17,7 @@ class MessageForm extends Component {
             $('.text-number .number').text(nextProps.message.length);
             this.setState({
                 message: nextProps.message,
-                total_message_sent: nextProps.totalMessage,
-                total_student_sent: nextProps.totalStudentSent
-            })
-        } else if (nextProps && nextProps.totalStudentSent) {
-            console.log(this.state.message);
-            this.setState({
-                total_student_sent: nextProps.totalStudentSent
+                total_message_sent: nextProps.totalMessage
             })
         } else {
             $('.none-background-inner').val('');

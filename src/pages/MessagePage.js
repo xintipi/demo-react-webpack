@@ -11,14 +11,12 @@ class MessagePage extends Component {
             id: '',
             management_name: '',
             total_message_sent: '',
-            total_student_sent: '',
             sent_date: '',
             message: '',
-        }
+        };
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         if (nextProps && nextProps.studentItem) {
             this.setState({
                 id: nextProps.studentItem.id,
@@ -26,14 +24,16 @@ class MessagePage extends Component {
                 total_message_sent: nextProps.studentItem.total_message_sent,
                 sent_date: nextProps.studentItem.sent_date,
                 message: nextProps.studentItem.message,
-            })
+            });
         }
     }
 
     onReceiveIdWhenChecked = (id) => {
-        this.setState({
-            total_student_sent: id
-        });
+        let info = {
+            length: this.props.students.length - id.length,
+            id: id
+        };
+        localStorage.setItem('total-student', JSON.stringify(info));
     };
 
     render () {
@@ -59,7 +59,8 @@ class MessagePage extends Component {
 
 const mapStateToProps = state => {
     return {
-        studentItem: state.studentItem
+        studentItem: state.studentItem,
+        students: state.students
     }
 };
 

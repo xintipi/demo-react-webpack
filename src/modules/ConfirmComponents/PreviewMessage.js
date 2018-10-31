@@ -3,7 +3,7 @@ import React, {Component, Fragment} from 'react';
 class PreviewMessage extends Component {
 
     render() {
-        let {preview} = this.props;
+        let {preview, totalStudentSent} = this.props;
         return (
             <Fragment>
                 <div className="form-group row management-name management">
@@ -31,7 +31,7 @@ class PreviewMessage extends Component {
                 <div className="cumulative">
                     <div className="number-target target-confirm">
                         <span className="txt">対象者数</span>
-                        <span className="num">000人</span>
+                        <span className="num">{totalStudentSent.length === 0 ? '000' : totalStudentSent.length}人</span>
                     </div>
                     <div className="number-transmissions transmissions-confirm">
                         <span className="txt">累計送信数</span>

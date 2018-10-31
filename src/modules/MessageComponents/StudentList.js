@@ -6,9 +6,6 @@ import _ from 'lodash';
 import {Link} from 'react-router-dom';
 
 class StudentList extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.props.getAllStudents();
@@ -34,6 +31,13 @@ class StudentList extends Component {
 
     onSave = () => {
         this.props.onSavePreview(JSON.parse(localStorage.getItem('task')));
+        if (tmp.length < 1) {
+            let info = {
+                length: this.props.students.length,
+                id: tmp
+            };
+            localStorage.setItem('total-student', JSON.stringify(info));
+        }
     };
 
     onGetId = (id) => {
@@ -67,7 +71,13 @@ class StudentList extends Component {
                                 className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                 <div className="btn-option">
                                     <input type="button" className="btn btn-default cancel-page" defaultValue="キャンセル" />
-                                    <Link to="/confirm" ><input type="button" className="btn btn-primary next-page" defaultValue="次へ" onClick={this.onSave}/></Link>
+                                    <Link to="/confirm" ><input
+                                        type="button"
+                                        className="btn btn-primary next-page"
+                                        defaultValue="次へ"
+                                        onClick={this.onSave}
+                                    />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +90,7 @@ class StudentList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        students: state.students
+        students: state.students,
     };
 };
 
