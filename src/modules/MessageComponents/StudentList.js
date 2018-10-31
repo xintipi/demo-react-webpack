@@ -3,6 +3,7 @@ import StudentItem from './StudentItem';
 import {connect} from 'react-redux';
 import * as action from './../../actions/index';
 import _ from 'lodash';
+import {Link} from 'react-router-dom';
 
 class StudentList extends Component {
 
@@ -27,19 +28,11 @@ class StudentList extends Component {
         return result;
     };
 
-    closeWindow = () => {
-        let win = window.open('location', '_self', '');
-        win.close();
-    };
-
     render() {
         let {students} = this.props;
         return (
             <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div className="table-content">
-                    <div id="loading" style={{display: 'none'}}>
-                        <img id="loading-image" src="./../../loading.gif" alt="Loading..."/>
-                    </div>
                     <p>送信済学生を除く</p>
                     <div className="main-box">
                         <table
@@ -61,8 +54,8 @@ class StudentList extends Component {
                             <div
                                 className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                 <div className="btn-option">
-                                    <input type="button" className="btn btn-default cancel-page" defaultValue="キャンセル" onClick={this.closeWindow}/>
-                                    <a href="/#"><input type="button" className="btn btn-primary next-page" defaultValue="次へ"/></a>
+                                    <input type="button" className="btn btn-default cancel-page" defaultValue="キャンセル" />
+                                    <Link to="/confirm" ><input type="button" className="btn btn-primary next-page" defaultValue="次へ"/></Link>
                                 </div>
                             </div>
                         </div>

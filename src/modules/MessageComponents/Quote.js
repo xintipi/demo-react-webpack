@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as action from './../../actions/index';
@@ -47,7 +47,7 @@ class Quote extends Component {
     render() {
         const {students} = this.props;
         return (
-            <form>
+            <Fragment>
                 <div className="form-group row">
                     <label id="quoted"
                            className="col-md-2 col-form-label col-form-label-lg form-quoted">送信履歴から引用</label>
@@ -70,7 +70,7 @@ class Quote extends Component {
                         </button>
                     </div>
                 </div>
-            </form>
+            </Fragment>
         );
     }
 }

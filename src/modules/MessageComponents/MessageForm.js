@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import * as action from './../../actions/index';
 
 class MessageForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             management_name: '',
-            message: ''
+            message: '',
+            total_message_sent: '',
+            total_student_sent: ''
         };
     }
 
@@ -14,7 +18,10 @@ class MessageForm extends Component {
             $('.none-background-inner').val(nextProps.message);
             $('.preview-message').html(`<p>${nextProps.message}</p>`);
             $('.text-number .number').text(nextProps.message.length);
-            this.setState({message: nextProps.message})
+            this.setState({
+                message: nextProps.message,
+                total_message_sent: nextProps.totalMessage
+            })
         } else {
             $('.none-background-inner').val('');
             $('.preview-message').html('');
