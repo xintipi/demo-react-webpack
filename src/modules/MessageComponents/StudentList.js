@@ -29,7 +29,7 @@ class StudentList extends Component {
     };
 
     onSave = () => {
-        console.log(JSON.parse(localStorage.getItem('task')));
+        this.props.onSavePreview(JSON.parse(localStorage.getItem('task')));
     };
 
     render() {
@@ -72,7 +72,7 @@ class StudentList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        students: state.students,
+        students: state.students
     };
 };
 
@@ -82,6 +82,9 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(action.actFetchStudentsRequest());
             // luu du lieu tu API len store
         },
+        onSavePreview: (info) => {
+            dispatch(action.actSavePreview(info))
+        }
     };
 };
 

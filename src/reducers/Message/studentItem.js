@@ -17,6 +17,9 @@ const studentItem = (state = initialState, action) => {
                 }
             }
             return state;
+        case Types.SAVE_PREVIEW:
+            state = action.info;
+            return state;
         default: return [...state];
     }
 };

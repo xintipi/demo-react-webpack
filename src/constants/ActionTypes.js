@@ -1,2 +1,3 @@
 export const FETCH_STUDENTS = 'FETCH_STUDENTS';
 export const APPLY_QUOTE = 'APPLY_QUOTE';
+export const SAVE_PREVIEW = 'SAVE_PREVIEW';

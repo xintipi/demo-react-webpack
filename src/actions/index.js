@@ -22,3 +22,10 @@ export const actApplyQuote = (student) => {
         student
     }
 };
+
+export const actSavePreview = (info) => {
+    return {
+        type: Types.SAVE_PREVIEW,
+        info
+    }
+};
