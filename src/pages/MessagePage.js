@@ -18,6 +18,7 @@ class MessagePage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
         if (nextProps && nextProps.studentItem) {
             this.setState({
                 id: nextProps.studentItem.id,
@@ -32,7 +33,7 @@ class MessagePage extends Component {
     onReceiveIdWhenChecked = (id) => {
         this.setState({
             total_student_sent: id
-        })
+        });
     };
 
     render () {

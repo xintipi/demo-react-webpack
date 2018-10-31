@@ -4,7 +4,6 @@ class PreviewMessage extends Component {
 
     render() {
         let {preview} = this.props;
-        console.log(preview);
         return (
             <Fragment>
                 <div className="form-group row management-name management">

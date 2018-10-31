@@ -21,6 +21,11 @@ class MessageForm extends Component {
                 total_message_sent: nextProps.totalMessage,
                 total_student_sent: nextProps.totalStudentSent
             })
+        } else if (nextProps && nextProps.totalStudentSent) {
+            console.log(this.state.message);
+            this.setState({
+                total_student_sent: nextProps.totalStudentSent
+            })
         } else {
             $('.none-background-inner').val('');
             $('.preview-message').html('');
@@ -84,7 +89,6 @@ class MessageForm extends Component {
 
     render() {
         localStorage.setItem('task', JSON.stringify(this.state));
-        // console.log(this.state);
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">

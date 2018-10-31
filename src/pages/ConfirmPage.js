@@ -4,6 +4,7 @@ import SenderList from './../modules/ConfirmComponents/SenderList';
 import {connect} from 'react-redux';
 
 class ConfirmPage extends Component{
+
     render () {
         let {studentItem} = this.props;
         return (
