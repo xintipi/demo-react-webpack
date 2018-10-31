@@ -2,6 +2,10 @@ import React, {Component, Fragment} from 'react';
 
 class PreviewMessage extends Component {
 
+    componentDidMount() {
+        $('.preview-content').html(JSON.parse(this.props.previewMessage))
+    }
+
     render() {
         let {preview, totalStudentSent} = this.props;
         return (

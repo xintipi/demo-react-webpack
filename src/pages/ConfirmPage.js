@@ -9,13 +9,18 @@ class ConfirmPage extends Component{
         // let {studentItem} = this.props; // neu dung props khi f5 lai thi se mat du lieu hien tai
         let studentItem = JSON.parse(localStorage.getItem('task'));
         let totalStudentSent = localStorage.getItem('total-student');
+        let previewMessage = localStorage.getItem('preview-message');
         return (
             <Fragment>
                 <h2>LINEメッセージ送信：確認画面</h2>
                 <div className="row">
                     <div id="confirm_detail">
                         <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
-                            <PreviewMessage preview={studentItem} totalStudentSent={JSON.parse(totalStudentSent)}/>
+                            <PreviewMessage
+                                preview={studentItem}
+                                totalStudentSent={totalStudentSent}
+                                previewMessage={previewMessage}
+                            />
                         </div>
                         <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                             <SenderList />

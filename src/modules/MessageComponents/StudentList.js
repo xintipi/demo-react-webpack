@@ -31,6 +31,7 @@ class StudentList extends Component {
 
     onSave = () => {
         this.props.onSavePreview(JSON.parse(localStorage.getItem('task')));
+        localStorage.setItem('preview-message', JSON.stringify($('.preview-message').html()));
         if (tmp.length < 1) {
             let info = {
                 length: this.props.students.length,
