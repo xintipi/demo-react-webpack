@@ -5,7 +5,6 @@ import SenderList from './../modules/ConfirmComponents/SenderList';
 class ConfirmPage extends Component{
     render () {
         let preview = JSON.parse(localStorage.getItem('task'));
-        console.log(preview);
         return (
             <Fragment>
                 <h2>LINEメッセージ送信：確認画面</h2>

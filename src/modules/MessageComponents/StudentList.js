@@ -28,6 +28,10 @@ class StudentList extends Component {
         return result;
     };
 
+    onSave = () => {
+        console.log(JSON.parse(localStorage.getItem('task')));
+    };
+
     render() {
         let {students} = this.props;
         return (
@@ -55,7 +59,7 @@ class StudentList extends Component {
                                 className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                 <div className="btn-option">
                                     <input type="button" className="btn btn-default cancel-page" defaultValue="キャンセル" />
-                                    <Link to="/confirm" ><input type="button" className="btn btn-primary next-page" defaultValue="次へ"/></Link>
+                                    <Link to="/confirm" ><input type="button" className="btn btn-primary next-page" defaultValue="次へ" onClick={this.onSave}/></Link>
                                 </div>
                             </div>
                         </div>
