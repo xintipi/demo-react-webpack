@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 
 class ConfirmPage extends Component{
 
+    componentDidMount() {
+        document.title = 'E2R Line Confirmation';
+    }
+
     render () {
         // let {studentItem} = this.props; // neu dung props khi f5 lai thi se mat du lieu hien tai
         let studentItem = JSON.parse(localStorage.getItem('task'));

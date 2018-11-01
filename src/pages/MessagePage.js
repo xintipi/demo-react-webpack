@@ -16,6 +16,10 @@ class MessagePage extends Component {
         };
     }
 
+    componentDidMount() {
+        document.title = 'E2R Line Message';
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps && nextProps.studentItem) {
             this.setState({
@@ -46,11 +50,10 @@ class MessagePage extends Component {
                         <Quote />
                     </div>
                     {/* Form to send data from message.html page to confirmation.html page */}
-                    <div id="frm_details">
                         <input type="hidden" name="user_ids" defaultValue="@%%user_ids@" />
                         <MessageForm message={message} totalMessage={total_message_sent} totalStudentSent={total_student_sent}/>
                         <StudentList onReceiveIdWhenChecked={this.onReceiveIdWhenChecked}/>
-                    </div>
+                    </form>
                 </div>
             </Fragment>
         )
