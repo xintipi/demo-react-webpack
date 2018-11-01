@@ -53,7 +53,6 @@ class MessagePage extends Component {
                         <input type="hidden" name="user_ids" defaultValue="@%%user_ids@" />
                         <MessageForm message={message} totalMessage={total_message_sent} totalStudentSent={total_student_sent}/>
                         <StudentList onReceiveIdWhenChecked={this.onReceiveIdWhenChecked}/>
-                    </form>
                 </div>
             </Fragment>
         )
