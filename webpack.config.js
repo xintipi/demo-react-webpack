@@ -32,7 +32,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
+        filename: '[name].js'
     },
     module: {
         rules: [
