@@ -35,7 +35,7 @@ class PreviewMessage extends Component {
                 <div className="cumulative">
                     <div className="number-target target-confirm">
                         <span className="txt">対象者数</span>
-                        <span className="num">{totalStudentSent.length === 0 ? '000' : totalStudentSent.length}人</span>
+                        <span className="num">{JSON.parse(totalStudentSent).length === 0 ? '000' : JSON.parse(totalStudentSent).length}人</span>
                     </div>
                     <div className="number-transmissions transmissions-confirm">
                         <span className="txt">累計送信数</span>
