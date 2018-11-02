@@ -1,0 +1,51 @@
+@import "../helpers/mixins";
+
+.main {
+  .management-name {
+    label {
+      padding-top: 0 !important;
+    }
+  }
+  .left-border-none-lable {
+    .inner {
+      height: 260px !important;
+      max-height: 260px !important;
+      p {
+        @include center-inside-element
+      }
+    }
+
+  }
+  .right-border {
+    border: 1px solid #d2d6de;
+    width: 100%;
+    height: 260px;
+    overflow-y: scroll;
+    h4 {
+      background-color: #3c8dbc;
+      margin: 0;
+      padding: 5px 10px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .inner {
+      padding: 5px 10px;
+      overflow: auto;
+      .text-school {
+        margin-top: 30px;
+      }
+    }
+  }
+  .close-up {
+    button {
+      float: right;
+      @include btn-default(#f4f4f4, #444, #ddd)
+    }
+  }
+}
+
+@media (max-width: 428px) {
+  .main .cumulative .number-target {
+    margin-right: 20px;
+  }
+}

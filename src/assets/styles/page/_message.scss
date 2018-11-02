@@ -1,0 +1,224 @@
+/*
+  Design by Xin
+  Name: Nguyen Huu Trung
+  Position: Javascript Developer
+*/
+@import "../helpers/variables";
+@import "../helpers/mixins";
+
+body {
+  .main {
+    .form-group {
+      label {
+        padding: 5px 0 0 20px;
+        font-weight: normal;
+      }
+      button {
+        width: 120px;
+      }
+      input, select, textarea {
+        border-radius: 0;
+        box-shadow: none;
+        border-color: #d2d6de;
+      }
+      .col-form-textarea, .text-number {
+        padding-left: 5px;
+      }
+      .form-quoted {
+        margin-top: 15px;
+      }
+      .text-number {
+        background-color: #f4f4f4;
+        color: #444;
+        border-color: #ddd;
+        .dot {
+          padding: 0 20px 0 20px;
+        }
+      }
+      .text-replace {
+        .replace {
+          margin-top: 2px;
+        }
+      }
+    }
+    .table-content {
+      p {
+        padding-left: 5px;
+      }
+      #loading {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        #loading-image {
+          width: 40px;
+        }
+      }
+    }
+    .left-border {
+      h4 {
+        background-color: #3c8dbc;
+        margin: 0;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .inner {
+        padding: 5px 10px;
+        width: 100%;
+        max-width: 100%;
+        height: 235px;
+        max-height: 235px;
+        outline: none;
+      }
+      .none-background-inner {
+        background: none;
+      }
+    }
+    .right-border {
+      border: 1px solid #d2d6de;
+      width: 100%;
+      height: 260px;
+      overflow-y: scroll;
+      h4 {
+        background-color: #3c8dbc;
+        margin: 0;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #ffffff;
+      }
+      .inner {
+        padding: 5px 10px;
+        overflow: auto;
+        .text-school {
+          margin-top: 30px;
+        }
+      }
+    }
+    .chat-speech {
+      position: relative;
+      box-sizing: border-box;
+      max-width: 80%;
+      padding: 20*$px;
+      border-radius: 6*$px;
+      background: $color-white;
+      margin: 20px 0 15px 20px;
+      border: 1px solid $color-line;
+
+      &:after {
+        position: absolute;
+        top: 10*$px;
+        left: -12*$px;
+        content: "";
+        @include triangle('left', $color-line, 12*$px, 22*$px);
+      }
+
+      &:before {
+        position: absolute;
+        top: 10*$px;
+        left: -11*$px;
+        content: "";
+        @include triangle('left', $color-white, 12*$px, 22*$px);
+        z-index:10;
+      }
+
+      .chat-speech-content {
+        box-sizing: content-box;
+        width: auto;
+      }
+
+    }
+    .table-content {
+      margin-top: 8px;
+      .main-box {
+        margin-top: 10px;
+        height: 255px;
+        overflow-y: scroll;
+      }
+      table.console-table {
+        background-color: #ffffff;
+      }
+      table.console-table th {
+        background-color: #f0f0f0;
+        border: solid 1px #dddddd!important;
+        padding: 5px 10px!important;
+        color: #3c8dbc;
+        text-align: center;
+        vertical-align: middle!important;
+        font-size: 12px;
+        font-weight: normal;
+      }
+      table.console-table td {
+        border: solid 1px #f4f4f4 !important;
+        padding: 5px 10px!important;
+        vertical-align: middle!important;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+    .set-pagination {
+      .pagination {
+        font-size: 14px;
+        float: left;
+        &>li {
+          & > a, & > span {
+            color: #333;
+          }
+        }
+        .active a {
+          color: #fff;
+        }
+      }
+      .btn-option {
+        margin: 20px 0;
+        float: right;
+        input.btn-primary {
+          width: 114px;
+          border-radius: 5px;
+          height: 40px;
+        }
+        input.btn-default {
+          margin-right: 20px;
+          @include btn-default(#f4f4f4, #444, #ddd)
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  table tr th.tac:nth-child(4) {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1440px) and (max-height: 900px) {
+  .table-content {
+    .main-box {
+      height: 250px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1366px) and (max-height: 768px) {
+    .table-content {
+      .main-box {
+        height: 164px !important;
+      }
+    }
+  .left-border {
+    .none-background-inner {
+      height: 200px !important;
+    }
+  }
+  .main {
+    .right-border {
+      height: 225px !important;
+    }
+  }
+}
+
+
+
+
+

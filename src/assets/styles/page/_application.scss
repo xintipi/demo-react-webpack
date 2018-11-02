@@ -1,0 +1,15 @@
+.main {
+  padding: 0 20px;
+  h2 {
+    padding: 10px 15px;
+    border: {
+      top: solid 3px #3c8dbc;
+      bottom: solid 1px #cccccc;
+    };
+    font: {
+      size: 16px;
+      weight: bold;
+    };
+    background-color: #ffffff;
+  }
+}

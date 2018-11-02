@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import './App.css';
+// import './App.css';
+import './assets/styles/main.scss';
+
 import routes from './routes';
 import {Switch, Route, BrowserRouter as Router, HashRouter} from 'react-router-dom';
 
@@ -28,11 +30,11 @@ class App extends Component {
 
     render() {
         return (
-            <Router>
+            <HashRouter>
                 <div className="main">
                     {this.showContent(routes)}
                 </div>
-            </Router>
+            </HashRouter>
         );
     }
 }

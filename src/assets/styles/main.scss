@@ -1,0 +1,12 @@
+// Variables + Mixins + Functions
+@import "helpers/variables";
+
+// Always include variable 1st !
+@import "helpers/mixins";
+
+// Page specific styles
+@import "page/index";
+@import "page/application";
+@import "page/message";
+@import "page/confirmation";
+@import "page/complete";

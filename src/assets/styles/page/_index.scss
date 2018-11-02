@@ -1,0 +1,72 @@
+@import "../helpers/mixins";
+#wrapper {
+  .main-wrapper {
+    @include center-inside-element();
+    .panel-default {
+      margin-bottom: 0;
+      .panel-heading {
+        text-align: center;
+        .img-logo {
+          padding-top: 20px;
+        }
+        .company-name {
+          padding: 30px 16px;
+          font-size: 18px;
+          line-height: 1.3333333;
+        }
+      }
+      & > .panel-heading {
+        background: none;
+        border-color: #fff;
+      }
+      .panel-body {
+        button {
+          outline: none;
+          &:focus {
+            outline: none;
+            border: 1px solid #fff;
+          }
+        }
+      }
+      .panel-footer {
+        background: #fff;
+        border-top: none;
+        padding-top: 30px;
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+.error {
+  padding-top: 3px !important;
+  margin-bottom: 0;
+  color: red;
+}
+
+.message-error {
+  margin-bottom: 10px;
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  .container {
+    width: 600px;
+  }
+}
+
+/* Portrait Ipad pro */
+@media only screen
+and (min-device-width: 1024px)
+and (max-device-width: 1366px)
+and (orientation: portrait)
+and (-webkit-min-device-pixel-ratio: 1.5) {
+  .main-wrapper {
+    width: 100%;
+  }
+}
+
