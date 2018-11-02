@@ -16,7 +16,6 @@ class MessageForm extends Component {
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
         this.child = this.node.querySelector('.preview-message');
-        this.text = this.node.querySelector('.none-background-inner');
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,19 +47,18 @@ class MessageForm extends Component {
     };
 
     onHandleChangeOption = (e) => {
-        const backgroundInner = $('.none-background-inner');
+        const backgroundInner = this.node.getElementsByClassName('none-background-inner')[0];
         if (e.target.value) {
-            const start = backgroundInner.prop('selectionStart');
-            const end = backgroundInner.prop('selectionEnd');
-            const text = backgroundInner.val();
+            const start = backgroundInner.selectionStart;
+            const end = backgroundInner.selectionEnd;
+            const text = backgroundInner.defaultValue;
             const before = text.substring(0, start);
             const after = text.substring(end, text.length);
 
-            ReactDOM.render(Parser(before + e.target.value + after), this.text);
             ReactDOM.render(Parser(`<p>${before + e.target.value + after}</p>`), this.child);
             this.onAddMessageWithNewline(before + e.target.value + after);
 
-            backgroundInner[0].selectionStart = backgroundInner[0].selectionEnd = start + e.target.value.length;
+            backgroundInner.selectionStart = backgroundInner.selectionEnd = start + e.target.value.length;
             backgroundInner.focus();
 
             this.setState({
