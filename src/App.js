@@ -28,11 +28,11 @@ class App extends Component {
 
     render() {
         return (
-            <HashRouter>
+            <Router>
                 <div className="main">
                     {this.showContent(routes)}
                 </div>
-            </HashRouter>
+            </Router>
         );
     }
 }

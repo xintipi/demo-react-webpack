@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Parser from 'html-react-parser';
 
 class MessageForm extends Component {
     constructor(props) {
@@ -6,68 +8,78 @@ class MessageForm extends Component {
         this.state = {
             management_name: '',
             message: '',
-            total_message_sent: ''
+            total_message_sent: '',
+            stringNumber: 0,
         };
     }
 
+    componentDidMount() {
+        this.node = ReactDOM.findDOMNode(this);
+        this.child = this.node.querySelector('.preview-message');
+        this.text = this.node.querySelector('.none-background-inner');
+    }
+
     componentWillReceiveProps(nextProps) {
-        if (nextProps && nextProps.message) {
-            $('.none-background-inner').val(nextProps.message);
-            $('.preview-message').html(`<p>${nextProps.message}</p>`);
-            $('.text-number .number').text(nextProps.message.length);
+        if (nextProps && nextProps.message && nextProps.totalMessage) {
+            ReactDOM.render(Parser(`<p>${nextProps.message}</p>`), this.child);
             this.setState({
                 message: nextProps.message,
-                total_message_sent: nextProps.totalMessage
-            })
+                total_message_sent: nextProps.totalMessage,
+                stringNumber: nextProps.message.length,
+            });
         } else {
-            $('.none-background-inner').val('');
-            $('.preview-message').html('');
-            $('.text-number .number').text('000');
+            this.setState({
+                message: '',
+                stringNumber: '000',
+            });
+            ReactDOM.render('', this.child);
         }
     }
 
     onHandleKeyUp = (e) => {
-        $('.none-background-inner').val(e.target.value);
-        $('.preview-message').html(`<p>${e.target.value}</p>`);
-        $('.text-number .number').text(e.target.value.length);
-        this.onAddMessageWithNewline();
-        this.setState({message: e.target.value})
+        // Get child nodes
+        ReactDOM.render(Parser(`<p>${e.target.value}</p>`), this.child);
+        // $('.preview-message').html(`<p>${e.target.value}</p>`);
+        this.onAddMessageWithNewline(e.target.value);
+        this.setState({
+            message: e.target.value,
+            stringNumber: e.target.value.length,
+        });
     };
 
     onHandleChangeOption = (e) => {
         const backgroundInner = $('.none-background-inner');
-        const previewMessage = $('.preview-message');
-        const textNumber =  $('.text-number .number');
         if (e.target.value) {
-
             const start = backgroundInner.prop('selectionStart');
             const end = backgroundInner.prop('selectionEnd');
             const text = backgroundInner.val();
             const before = text.substring(0, start);
             const after = text.substring(end, text.length);
 
-            backgroundInner.val(before + e.target.value + after);
-            previewMessage.html(`<p>${before + e.target.value + after}</p>`);
-            this.onAddMessageWithNewline();
+            ReactDOM.render(Parser(before + e.target.value + after), this.text);
+            ReactDOM.render(Parser(`<p>${before + e.target.value + after}</p>`), this.child);
+            this.onAddMessageWithNewline(before + e.target.value + after);
+
             backgroundInner[0].selectionStart = backgroundInner[0].selectionEnd = start + e.target.value.length;
             backgroundInner.focus();
-            textNumber.text(before.length + e.target.value.length + after.length);
 
-            this.setState({message: before + e.target.value + after})
+            this.setState({
+                message: before + e.target.value + after,
+                stringNumber: before.length + e.target.value.length + after.length,
+            });
         }
     };
 
-    onAddMessageWithNewline = () => {
-        const backgroundInner = $('.none-background-inner');
-        const text = backgroundInner.val();
-        const match = /\n/.exec(text);
+    onAddMessageWithNewline = (txtMessage) => {
+        const match = /\n/.exec(txtMessage);
+        const arrayParagraph = [];
         if (match) {
-            // Check if exist new line when compose message
-            const arrayText = backgroundInner.val().split('\n');
-            $('.preview-message p:first').remove();
-            arrayText.forEach((value) => {
-                $('.preview-message').append(`<p>${value}</p>`);
+            const arrayText = txtMessage.split('\n');
+            arrayText.forEach((value, index) => {
+                let temp = (<p key={index}>{value}</p>);
+                arrayParagraph.push(temp);
             });
+            ReactDOM.render(arrayParagraph, this.child);
         }
     };
 
@@ -76,7 +88,7 @@ class MessageForm extends Component {
         let name = target.name;
         let value = target.value;
         this.setState({
-            [name]: value
+            [name]: value,
         });
     };
 
@@ -108,6 +120,7 @@ class MessageForm extends Component {
                                 name="message"
                                 onChange={this.onChange}
                                 onKeyUp={this.onHandleKeyUp}
+                                value={this.state.message}
                             />
                         </div>
                         <p className="error message-error"
@@ -115,7 +128,8 @@ class MessageForm extends Component {
                         <div className="text-number">
                             <span className="txt">文字数</span>
                             <span className="dot">:</span>
-                            <span className="number">000</span>
+                            <span
+                                className="number">{this.state.stringNumber}</span>
                         </div>
                         <div className="text-replace row">
                             <label
@@ -124,7 +138,7 @@ class MessageForm extends Component {
                                 className="col-md-8 col-lg-8 col-sm-8 col-xs-8 replace form-quoted">
                                 <select className="form-control word-input"
                                         onChange={this.onHandleChangeOption}>
-                                    <option value/>
+                                    <option value=""/>
                                     <option value="@##user_id@">@##user_id@
                                     </option>
                                     <option value="@##lastname@">@##lastname@

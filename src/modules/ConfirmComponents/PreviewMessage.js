@@ -1,15 +1,19 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Parse from 'html-react-parser';
 
 class PreviewMessage extends Component {
 
     componentDidMount() {
-        $('.preview-content').html(JSON.parse(this.props.previewMessage))
+        this.node = ReactDOM.findDOMNode(this);
+        this.child = this.node.querySelector('.preview-content');
+        ReactDOM.render(Parse(JSON.parse(this.props.previewMessage)), this.child);
     }
 
     render() {
         let {preview, totalStudentSent} = this.props;
         return (
-            <Fragment>
+            <div>
                 <div className="form-group row management-name management">
                     <label className="col-md-1 col-form-label col-form-label-lg">管理名</label>
                     <div className="col-md-11" style={{paddingRight: 0}}>
@@ -42,7 +46,7 @@ class PreviewMessage extends Component {
                         <span className="num">{preview.total_message_sent ? preview.total_message_sent : '0000'}/5000</span>
                     </div>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }

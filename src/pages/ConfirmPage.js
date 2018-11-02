@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 class ConfirmPage extends Component{
 
-    componentDidMount() {
+    componentWillMount() {
         document.title = 'E2R Line Confirmation';
     }
 

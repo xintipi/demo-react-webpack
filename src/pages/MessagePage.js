@@ -16,7 +16,7 @@ class MessagePage extends Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         document.title = 'E2R Line Message';
     }
 
@@ -33,10 +33,7 @@ class MessagePage extends Component {
     }
 
     onReceiveIdWhenChecked = (id) => {
-        let info = {
-            length: this.props.students.length - id.length,
-            id: id
-        };
+        let info = {length: this.props.students.length - id.length, id: id};
         localStorage.setItem('total-student', JSON.stringify(info));
     };
 
