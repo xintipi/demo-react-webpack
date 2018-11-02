@@ -27,7 +27,7 @@ const devServer = {
 
 module.exports = {
     entry: {
-        bundle: './src/index.js',
+        bundle: './src/store/index.js',
         vendor: VENDOR_LIBS
     },
     output: {
