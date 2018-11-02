@@ -38,7 +38,6 @@ class MessageForm extends Component {
     onHandleKeyUp = (e) => {
         // Get child nodes
         ReactDOM.render(Parser(`<p>${e.target.value}</p>`), this.child);
-        // $('.preview-message').html(`<p>${e.target.value}</p>`);
         this.onAddMessageWithNewline(e.target.value);
         this.setState({
             message: e.target.value,
