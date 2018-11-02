@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import Quote from '../modules/MessageComponents/Quote';
-import MessageForm from '../modules/MessageComponents/MessageForm';
-import StudentList from '../modules/MessageComponents/StudentList';
+import Quote from '../components/Message/Quote';
+import MessageForm from '../components/Message/MessageForm';
+import StudentList from '../components/Message/StudentList';
 
 class MessagePage extends Component {
     constructor(props) {
@@ -48,7 +48,11 @@ class MessagePage extends Component {
                     </div>
                     {/* Form to send data from message.html page to confirmation.html page */}
                         <input type="hidden" name="user_ids" defaultValue="@%%user_ids@" />
-                        <MessageForm message={message} totalMessage={total_message_sent} totalStudentSent={total_student_sent}/>
+                        <MessageForm
+                            message={message}
+                            totalMessage={total_message_sent}
+                            totalStudentSent={total_student_sent}
+                        />
                         <StudentList onReceiveIdWhenChecked={this.onReceiveIdWhenChecked}/>
                 </div>
             </Fragment>

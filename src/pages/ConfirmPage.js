@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import PreviewMessage from './../modules/ConfirmComponents/PreviewMessage';
-import SenderList from './../modules/ConfirmComponents/SenderList';
+import PreviewMessage from '../components/Confirm/PreviewMessage';
+import SenderList from '../components/Confirm/SenderList';
 import {connect} from 'react-redux';
 
 class ConfirmPage extends Component{
