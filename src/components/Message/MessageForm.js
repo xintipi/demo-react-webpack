@@ -8,14 +8,15 @@ class MessageForm extends Component {
         this.state = {
             management_name: '',
             message: '',
+            previewMessage: '',
             total_message_sent: '',
-            stringNumber: 0,
-            sltOptionName: ''
+            stringNumber: 0
         };
     }
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
+        this.message = this.node.querySelector('.none-background-inner');
         this.child = this.node.querySelector('.preview-message');
     }
 
@@ -42,6 +43,7 @@ class MessageForm extends Component {
         this.onAddMessageWithNewline(e.target.value);
         this.setState({
             message: e.target.value,
+            previewMessage: `<p>${e.target.value}</p>`,
             stringNumber: e.target.value.length,
         });
     };
@@ -63,17 +65,8 @@ class MessageForm extends Component {
 
             this.setState({
                 message: before + e.target.value + after,
-                stringNumber: before.length + e.target.value.length + after.length,
-                sltOptionName: e.target.value
+                stringNumber: before.length + e.target.value.length + after.length
             });
-
-            localStorage.setItem('task', JSON.stringify({
-                ...this.state,
-                message: before + e.target.value + after,
-                stringNumber: before.length + e.target.value.length + after.length,
-                sltOptionName: e.target.value
-            }));
-
         }
     };
 
@@ -94,13 +87,13 @@ class MessageForm extends Component {
         let target = e.target;
         let name = target.name;
         let value = target.value;
-        localStorage.setItem('task', JSON.stringify(this.state));
         this.setState({
             [name]: value,
         });
     };
 
     render() {
+        localStorage.setItem('task', JSON.stringify(this.state));
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">
