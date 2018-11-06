@@ -10,6 +10,7 @@ class MessageForm extends Component {
             message: '',
             total_message_sent: '',
             stringNumber: 0,
+            sltOptionName: ''
         };
     }
 
@@ -63,7 +64,16 @@ class MessageForm extends Component {
             this.setState({
                 message: before + e.target.value + after,
                 stringNumber: before.length + e.target.value.length + after.length,
+                sltOptionName: e.target.value
             });
+
+            localStorage.setItem('task', JSON.stringify({
+                ...this.state,
+                message: before + e.target.value + after,
+                stringNumber: before.length + e.target.value.length + after.length,
+                sltOptionName: e.target.value
+            }));
+
         }
     };
 
@@ -84,13 +94,13 @@ class MessageForm extends Component {
         let target = e.target;
         let name = target.name;
         let value = target.value;
+        localStorage.setItem('task', JSON.stringify(this.state));
         this.setState({
             [name]: value,
         });
     };
 
     render() {
-        localStorage.setItem('task', JSON.stringify(this.state));
         return (
             <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
                 <div className="form-group row">
@@ -134,6 +144,7 @@ class MessageForm extends Component {
                             <div
                                 className="col-md-8 col-lg-8 col-sm-8 col-xs-8 replace form-quoted">
                                 <select className="form-control word-input"
+                                        name="sltOptionName"
                                         onChange={this.onHandleChangeOption}>
                                     <option value=""/>
                                     <option value="@##user_id@">@##user_id@
