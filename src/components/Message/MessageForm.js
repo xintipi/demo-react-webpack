@@ -8,6 +8,7 @@ class MessageForm extends Component {
         this.state = {
             management_name: '',
             message: '',
+            previewMessage: '',
             total_message_sent: '',
             stringNumber: 0,
             sltOptionName: ''
@@ -16,6 +17,7 @@ class MessageForm extends Component {
 
     componentDidMount() {
         this.node = ReactDOM.findDOMNode(this);
+        this.message = this.node.querySelector('.none-background-inner');
         this.child = this.node.querySelector('.preview-message');
     }
 
@@ -42,8 +44,10 @@ class MessageForm extends Component {
         this.onAddMessageWithNewline(e.target.value);
         this.setState({
             message: e.target.value,
+            previewMessage: `<p>${e.target.value}</p>`,
             stringNumber: e.target.value.length,
         });
+        localStorage.setItem('task', JSON.stringify(this.state));
     };
 
     onHandleChangeOption = (e) => {
@@ -70,6 +74,7 @@ class MessageForm extends Component {
             localStorage.setItem('task', JSON.stringify({
                 ...this.state,
                 message: before + e.target.value + after,
+                previewMessage: `<p>${before + e.target.value + after}</p>`,
                 stringNumber: before.length + e.target.value.length + after.length,
                 sltOptionName: e.target.value
             }));
@@ -94,10 +99,10 @@ class MessageForm extends Component {
         let target = e.target;
         let name = target.name;
         let value = target.value;
-        localStorage.setItem('task', JSON.stringify(this.state));
         this.setState({
             [name]: value,
         });
+        localStorage.setItem('task', JSON.stringify(this.state));
     };
 
     render() {
@@ -127,7 +132,6 @@ class MessageForm extends Component {
                                 name="message"
                                 onChange={this.onChange}
                                 onKeyUp={this.onHandleKeyUp}
-                                value={this.state.message}
                             />
                         </div>
                         <p className="error message-error"
