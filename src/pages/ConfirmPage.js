@@ -11,7 +11,7 @@ class ConfirmPage extends Component{
 
     render () {
         // let {studentItem} = this.props; // neu dung props khi f5 lai thi se mat du lieu hien tai
-        let studentItem = JSON.parse(localStorage.getItem('task'));
+        let studentItem = JSON.parse(localStorage.getItem('data'));
         let totalStudentSent = localStorage.getItem('total-student');
         let previewMessage = localStorage.getItem('preview-message');
         return (
@@ -19,7 +19,7 @@ class ConfirmPage extends Component{
                 <h2>LINEメッセージ送信：確認画面</h2>
                 <div className="row">
                     <div id="confirm_detail">
-                        <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+                        <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                             <PreviewMessage
                                 preview={studentItem}
                                 totalStudentSent={totalStudentSent}

@@ -2,6 +2,8 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as action from './../../actions/index';
+import ReactDOM from 'react-dom';
+import Parser from 'html-react-parser';
 
 class Quote extends Component {
     constructor(props) {
@@ -41,7 +43,7 @@ class Quote extends Component {
     onApplyQuote = (students) => {
         let splitName = this.state.slName ? this.state.slName.split(' ')[1].replace(/[\[\]']+/g, '') : '';
         let index = _.findIndex(students, (student) => { return student.management_name === splitName; });
-        this.props.applyQuote(students[index])
+        this.props.applyQuote(students[index]);
     };
 
     render() {

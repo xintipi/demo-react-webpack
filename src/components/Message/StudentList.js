@@ -30,7 +30,7 @@ class StudentList extends Component {
     };
 
     onSave = () => {
-        this.props.onSavePreview(JSON.parse(localStorage.getItem('task')));
+        this.props.onSavePreview(JSON.parse(localStorage.getItem('data')));
         localStorage.setItem('preview-message', JSON.stringify($('.preview-message').html()));
         if (tmp.length < 1) {
             let info = {
@@ -50,7 +50,7 @@ class StudentList extends Component {
         return (
             <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div className="table-content">
-                    <p>送信済学生を除く</p>
+                    {/*<p>送信済学生を除く</p>*/}
                     <div className="main-box">
                         <table
                             className="table table-striped console-table list-student">

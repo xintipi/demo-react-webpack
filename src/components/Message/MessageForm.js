@@ -23,6 +23,7 @@ class MessageForm extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps && nextProps.message && nextProps.totalMessage) {
             ReactDOM.render(Parser(`<p>${nextProps.message}</p>`), this.child);
+            this.onAddMessageWithNewline(nextProps.message);
             this.setState({
                 message: nextProps.message,
                 total_message_sent: nextProps.totalMessage,
@@ -84,27 +85,25 @@ class MessageForm extends Component {
     };
 
     onChange = (e) => {
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
-        this.setState({
-            [name]: value,
-        });
+        let student = this.state;
+        student[e.target.name] = e.target.value;
+        this.setState({student})
     };
 
     render() {
-        localStorage.setItem('task', JSON.stringify(this.state));
+        localStorage.setItem('data', JSON.stringify(this.state));
         return (
-            <div className="col-md-10 col-lg-10 col-sm-10 col-xs-10">
+            <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div className="form-group row">
                     <label
-                        className="col-md-1 col-form-label col-form-label-lg">管理名</label>
+                        className="col-md-1 col-form-label col-form-label-lg">管理名<span style={{color: 'red'}}>※必須</span></label>
                     <div className="col-md-11">
                         <input type="text"
                                className="form-control form-control-sm"
                                id="colFormLabelSm"
                                name="management_name"
                                onChange={this.onChange}
+                               ref="managementName"
                         />
                         <p className="error name-error"
                            style={{display: 'none'}}>【管理名は必須です。】</p>
@@ -113,13 +112,13 @@ class MessageForm extends Component {
                 <div className="form-group row">
                     <div className="col-md-6" style={{marginTop: 1}}>
                         <div className="left-border">
-                            <h4>メッセージ入力</h4>
+                            <h4>メッセージ入力<span style={{color: 'red'}}>※必須</span></h4>
                             <textarea
                                 maxLength={2000}
                                 className="inner none-background-inner"
                                 name="message"
                                 onChange={this.onChange}
-                                onKeyUp={this.onHandleKeyUp}
+                                onInput={this.onHandleKeyUp}
                                 value={this.state.message}
                             />
                         </div>
@@ -140,13 +139,10 @@ class MessageForm extends Component {
                                         name="sltOptionName"
                                         onChange={this.onHandleChangeOption}>
                                     <option value=""/>
-                                    <option value="@##user_id@">@##user_id@
-                                    </option>
-                                    <option value="@##lastname@">@##lastname@
-                                    </option>
-                                    <option value="@##name@">@##name@</option>
-                                    <option value="@##school@">@##school@
-                                    </option>
+                                    <option value="@##user_id@">ユーザID：@##user_id@</option>
+                                    <option value="@##lastname@">氏名（姓）：@##lastname@</option>
+                                    <option value="@##name@">氏名（姓・名）：@##name@</option>
+                                    <option value="@##school@">学校：@##school@</option>
                                 </select>
                             </div>
                         </div>

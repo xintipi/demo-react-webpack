@@ -25,7 +25,7 @@ class MessagePage extends Component {
             this.setState({
                 id: nextProps.studentItem.id,
                 management_name: nextProps.studentItem.management_name,
-                total_message_sent: nextProps.studentItem.total_message_sent,
+                total_message_sent: nextProps.studentItem.total_students,
                 sent_date: nextProps.studentItem.sent_date,
                 message: nextProps.studentItem.message,
             });

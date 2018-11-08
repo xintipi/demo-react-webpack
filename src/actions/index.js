@@ -4,7 +4,7 @@ import callApi from './../utils/callApi';
 export const actFetchStudentsRequest = () => {
     return (dispatch) => {
         return callApi('line_messages', 'GET', null).then((res) => {
-            dispatch(actFetchStudents(res.data))
+            dispatch(actFetchStudents(res.data.data))
         })
     }
 };
