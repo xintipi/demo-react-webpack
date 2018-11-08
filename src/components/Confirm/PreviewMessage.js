@@ -42,7 +42,7 @@ class PreviewMessage extends Component {
                         <span className="num">{JSON.parse(totalStudentSent).length === 0 ? '000' : JSON.parse(totalStudentSent).length}人</span>
                     </div>
                     <div className="number-transmissions transmissions-confirm">
-                        <span className="txt">累計送信数</span>
+                        <span className="txt">月間累計送信数</span>
                         <span className="num">{preview.total_message_sent ? preview.total_message_sent : '0000'}/5000</span>
                     </div>
                 </div>
