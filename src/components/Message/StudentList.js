@@ -29,7 +29,7 @@ class StudentList extends Component {
         return result;
     };
 
-    onSave = () => {
+    onSave = (e) => {
         this.props.onSavePreview(JSON.parse(sessionStorage.getItem('data')));
         sessionStorage.setItem('preview-message', JSON.stringify($('.preview-message').html()));
         if (tmp.length < 1) {
@@ -38,6 +38,14 @@ class StudentList extends Component {
                 id: tmp
             };
             sessionStorage.setItem('total-student', JSON.stringify(info));
+        }
+        if (!$('#colFormLabelSm').val()) {
+            e.preventDefault();
+            alert('【管理名は必須です。】')
+        }
+        if (!$('.none-background-inner').val()) {
+            e.preventDefault();
+            alert('【メッセージ入力は必須です。】')
         }
     };
 

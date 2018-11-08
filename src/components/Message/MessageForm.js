@@ -115,7 +115,6 @@ class MessageForm extends Component {
                                id="colFormLabelSm"
                                name="management_name"
                                onChange={this.onHandleName}
-                               onInput={this.onHandleName}
                                value={this.state.management_name}
                         />
                         <p className="error name-error"
