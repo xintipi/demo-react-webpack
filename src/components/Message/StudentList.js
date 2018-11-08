@@ -39,13 +39,20 @@ class StudentList extends Component {
             };
             sessionStorage.setItem('total-student', JSON.stringify(info));
         }
-        if (!$('#colFormLabelSm').val()) {
+        let result = JSON.parse(sessionStorage.getItem('students')).filter((student) => {
+            return student.management_name === $('#colFormLabelSm').val();
+        });
+        if (result.length === 0 && !$('#colFormLabelSm').val()) {
             e.preventDefault();
-            alert('【管理名は必須です。】')
+            $('.name-error').text('【管理名は必須です。】').show();
+        }
+        if (result.length === 1) {
+            e.preventDefault();
+            $('.name-error').text('【指定された管理名は既に登録されている為、登録できません。】').show();
         }
         if (!$('.none-background-inner').val()) {
             e.preventDefault();
-            alert('【メッセージ入力は必須です。】')
+            $('.message-error').show();
         }
     };
 

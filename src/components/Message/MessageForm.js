@@ -135,7 +135,7 @@ class MessageForm extends Component {
                             />
                         </div>
                         <p className="error message-error"
-                           style={{display: 'none'}}>【メッセージ内容は必須です。】</p>
+                           style={{display: 'none'}}>【メッセージ入力は必須です。】</p>
                         <div className="text-number">
                             <span className="txt">文字数</span>
                             <span className="dot">:</span>
