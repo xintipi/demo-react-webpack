@@ -15,7 +15,7 @@ class PreviewMessage extends Component {
         return (
             <div>
                 <div className="form-group row management-name management">
-                    <label className="col-md-1 col-form-label col-form-label-lg">管理名</label>
+                    <label className="col-md-1 col-form-label col-form-label-lg">管理名<span style={{color: 'red'}}>※必須</span></label>
                     <div className="col-md-11" style={{paddingRight: 0}}>
                         <input type="text" className="form-control form-control-sm" id="name-manage" value={preview.management_name} readOnly />
                     </div>
@@ -23,7 +23,7 @@ class PreviewMessage extends Component {
                 <div className="form-group row">
                     <div className="col-md-6">
                         <div className="border left-border">
-                            <h4>メッセージ内容</h4>
+                            <h4>メッセージ内容<span style={{color: 'red'}}>※必須</span></h4>
                             <textarea className="inner check-inner" readOnly value={preview.message} />
                         </div>
                     </div>
