@@ -2,8 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import * as action from './../../actions/index';
-import ReactDOM from 'react-dom';
-import Parser from 'html-react-parser';
 
 class Quote extends Component {
     constructor(props) {

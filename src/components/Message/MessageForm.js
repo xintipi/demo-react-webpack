@@ -35,20 +35,14 @@ class MessageForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps && nextProps.message && nextProps.totalMessage) {
+        if (nextProps && nextProps.message) {
             ReactDOM.render(Parser(`<p>${nextProps.message}</p>`), this.child);
             this.onAddMessageWithNewline(nextProps.message);
             this.setState({
                 message: nextProps.message,
                 preview_message: `<p>${nextProps.message}</p>`,
-                total_message_sent: nextProps.totalMessage,
                 string_number: nextProps.message.length,
             });
-        } else {
-            // ReactDOM.render('', this.message);
-            // this.setState({message: ''});
-            // ReactDOM.render('', this.child);
-            // ReactDOM.render('000', this.count);
         }
     }
 
