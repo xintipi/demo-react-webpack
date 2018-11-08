@@ -30,14 +30,14 @@ class StudentList extends Component {
     };
 
     onSave = () => {
-        this.props.onSavePreview(JSON.parse(localStorage.getItem('data')));
-        localStorage.setItem('preview-message', JSON.stringify($('.preview-message').html()));
+        this.props.onSavePreview(JSON.parse(sessionStorage.getItem('data')));
+        sessionStorage.setItem('preview-message', JSON.stringify($('.preview-message').html()));
         if (tmp.length < 1) {
             let info = {
                 length: this.props.students.length,
                 id: tmp
             };
-            localStorage.setItem('total-student', JSON.stringify(info));
+            sessionStorage.setItem('total-student', JSON.stringify(info));
         }
     };
 

@@ -34,7 +34,7 @@ class MessagePage extends Component {
 
     onReceiveIdWhenChecked = (id) => {
         let info = {length: this.props.students.length - id.length, id: id};
-        localStorage.setItem('total-student', JSON.stringify(info));
+        sessionStorage.setItem('total-student', JSON.stringify(info));
     };
 
     render () {

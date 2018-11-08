@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import Parser from 'html-react-parser';
 
@@ -8,10 +8,24 @@ class MessageForm extends Component {
         this.state = {
             management_name: '',
             message: '',
-            previewMessage: '',
+            preview_message: '',
             total_message_sent: '',
-            stringNumber: 0
+            alternation_name: '',
+            string_number: 0
         };
+    }
+
+    componentWillMount() {
+        if (JSON.parse(sessionStorage.getItem('old-data'))) {
+            this.setState({
+                management_name: JSON.parse(sessionStorage.getItem('old-data')).management_name,
+                message: JSON.parse(sessionStorage.getItem('old-data')).message,
+                preview_message: JSON.parse(sessionStorage.getItem('old-data')).preview_message,
+                total_message_sent: JSON.parse(sessionStorage.getItem('old-data')).total_message_sent,
+                alternation_name: JSON.parse(sessionStorage.getItem('old-data')).alternation_name,
+                string_number: JSON.parse(sessionStorage.getItem('old-data')).string_number
+            })
+        }
     }
 
     componentDidMount() {
@@ -26,15 +40,15 @@ class MessageForm extends Component {
             this.onAddMessageWithNewline(nextProps.message);
             this.setState({
                 message: nextProps.message,
+                preview_message: `<p>${nextProps.message}</p>`,
                 total_message_sent: nextProps.totalMessage,
-                stringNumber: nextProps.message.length,
+                string_number: nextProps.message.length,
             });
         } else {
-            this.setState({
-                message: '',
-                stringNumber: '000',
-            });
-            ReactDOM.render('', this.child);
+            // ReactDOM.render('', this.message);
+            // this.setState({message: ''});
+            // ReactDOM.render('', this.child);
+            // ReactDOM.render('000', this.count);
         }
     }
 
@@ -44,8 +58,8 @@ class MessageForm extends Component {
         this.onAddMessageWithNewline(e.target.value);
         this.setState({
             message: e.target.value,
-            previewMessage: `<p>${e.target.value}</p>`,
-            stringNumber: e.target.value.length,
+            preview_message: `<p>${e.target.value}</p>`,
+            string_number: e.target.value.length,
         });
     };
 
@@ -66,7 +80,8 @@ class MessageForm extends Component {
 
             this.setState({
                 message: before + e.target.value + after,
-                stringNumber: before.length + e.target.value.length + after.length
+                alternation_name: e.target.value,
+                string_number: before.length + e.target.value.length + after.length
             });
         }
     };
@@ -84,14 +99,17 @@ class MessageForm extends Component {
         }
     };
 
-    onChange = (e) => {
-        let student = this.state;
-        student[e.target.name] = e.target.value;
-        this.setState({student})
+    onHandleName = (e) => {
+        let target = e.target;
+        let name = target.name;
+        let value = target.value;
+        this.setState({
+            [name]: value
+        });
     };
 
     render() {
-        localStorage.setItem('data', JSON.stringify(this.state));
+        sessionStorage.setItem('data', JSON.stringify(this.state));
         return (
             <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div className="form-group row">
@@ -102,8 +120,9 @@ class MessageForm extends Component {
                                className="form-control form-control-sm"
                                id="colFormLabelSm"
                                name="management_name"
-                               onChange={this.onChange}
-                               ref="managementName"
+                               onChange={this.onHandleName}
+                               onInput={this.onHandleName}
+                               value={this.state.management_name}
                         />
                         <p className="error name-error"
                            style={{display: 'none'}}>【管理名は必須です。】</p>
@@ -117,7 +136,7 @@ class MessageForm extends Component {
                                 maxLength={2000}
                                 className="inner none-background-inner"
                                 name="message"
-                                onChange={this.onChange}
+                                onChange={this.onHandleName}
                                 onInput={this.onHandleKeyUp}
                                 value={this.state.message}
                             />
@@ -127,17 +146,17 @@ class MessageForm extends Component {
                         <div className="text-number">
                             <span className="txt">文字数</span>
                             <span className="dot">:</span>
-                            <span
-                                className="number">{this.state.stringNumber}</span>
+                            <span className="number">{this.state.string_number}</span>
                         </div>
                         <div className="text-replace row">
-                            <label
-                                className="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-form-label col-form-label-lg replace">置換ワード入力</label>
+                            <label className="col-md-4 col-lg-4 col-sm-4 col-xs-4 col-form-label col-form-label-lg replace">置換ワード入力</label>
                             <div
                                 className="col-md-8 col-lg-8 col-sm-8 col-xs-8 replace form-quoted">
                                 <select className="form-control word-input"
-                                        name="sltOptionName"
-                                        onChange={this.onHandleChangeOption}>
+                                        name="alternation_name"
+                                        onChange={this.onHandleChangeOption}
+                                        value={this.state.alternation_name}
+                                >
                                     <option value=""/>
                                     <option value="@##user_id@">ユーザID：@##user_id@</option>
                                     <option value="@##lastname@">氏名（姓）：@##lastname@</option>
@@ -152,7 +171,10 @@ class MessageForm extends Component {
                             <h4>プレビュー</h4>
                             <div className="chat-speech">
                                 <div className="chat-speech-content">
-                                    <div className="inner preview-message"/>
+                                    <div
+                                        className="inner preview-message"
+                                        dangerouslySetInnerHTML={{ __html: sessionStorage.getItem('old-preview-message') ? JSON.parse(sessionStorage.getItem('old-preview-message')) : '' }}>
+                                    </div>
                                 </div>
                             </div>
                         </div>

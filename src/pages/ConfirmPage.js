@@ -11,9 +11,14 @@ class ConfirmPage extends Component{
 
     render () {
         // let {studentItem} = this.props; // neu dung props khi f5 lai thi se mat du lieu hien tai
-        let studentItem = JSON.parse(localStorage.getItem('data'));
-        let totalStudentSent = localStorage.getItem('total-student');
-        let previewMessage = localStorage.getItem('preview-message');
+        let studentItem = JSON.parse(sessionStorage.getItem('data'));
+        let totalStudentSent = sessionStorage.getItem('total-student');
+        let previewMessage = sessionStorage.getItem('preview-message');
+        let slName = sessionStorage.getItem('sl-name');
+
+        sessionStorage.setItem('old-data', JSON.stringify(studentItem));
+        sessionStorage.setItem('old-preview-message', previewMessage);
+        sessionStorage.setItem('old-sl-name', slName);
         return (
             <Fragment>
                 <h2>LINEメッセージ送信：確認画面</h2>

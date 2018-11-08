@@ -13,6 +13,12 @@ class Quote extends Component {
         }
     }
 
+    componentWillMount() {
+        if (sessionStorage.getItem('old-sl-name')) {
+            this.setState({slName: sessionStorage.getItem('old-sl-name')})
+        }
+    }
+
     showOption = (students) => {
         let result = null;
         let newFormatDate = null;
@@ -35,9 +41,10 @@ class Quote extends Component {
         let target = e.target;
         let name = target.name;
         let value = target.type === 'checkbox' ? target.checked : target.value;
+        sessionStorage.setItem('sl-name', target.value);
         this.setState({
             [name]: value
-        })
+        });
     };
 
     onApplyQuote = (students) => {
@@ -58,6 +65,7 @@ class Quote extends Component {
                             className="form-control message-quote"
                             name="slName"
                             onChange={this.onChange}
+                            value={this.state.slName}
                         >
                             <option value=""/>
                             {this.showOption(students)}
