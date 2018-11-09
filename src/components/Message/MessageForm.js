@@ -150,7 +150,7 @@ class MessageForm extends Component {
                                         onChange={this.onHandleChangeOption}
                                         value={this.state.alternation_name}
                                 >
-                                    <option value=""/>
+                                    <option value="" disabled>選択</option>
                                     <option value="@##user_id@">ユーザID：@##user_id@</option>
                                     <option value="@##lastname@">氏名（姓）：@##lastname@</option>
                                     <option value="@##name@">氏名（姓・名）：@##name@</option>

@@ -65,7 +65,7 @@ class Quote extends Component {
                             onChange={this.onChange}
                             value={this.state.slName}
                         >
-                            <option value=""/>
+                            <option value="" disabled>選択</option>
                             {this.showOption(students)}
                         </select>
                     </div>
